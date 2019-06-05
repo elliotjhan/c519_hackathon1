@@ -85,30 +85,26 @@ class Player{
     this.isTurn = false;
   }
 
-  sailShip() {//player action3
-    //sailShip (moving the ship to the game board)
-    //call GameState moveShip(this.color) method -- moves the ship
-    //set isTurn to false
+  // sailShip() {//player action3
+  //   //sailShip (moving the ship to the game board)
+  //   //call GameState moveShip(this.color) method -- moves the ship
+  //   //set isTurn to false
 
-    if(//ship is docked){
-      alert('Ship is already docked. Please pick another action.');
-      return;
-    }else if(//ship is not full){
-      alert('Ship is not loaded, please pick another action.');
-      return;
-    }else{
-      //call gameState move ship, pass player color through
-      alert('Ship has sailed! Blocks unloaded. Starting a new round.')
-    }    
+  //   if(//ship is docked){
+  //     alert('Ship is already docked. Please pick another action.');
+  //     return;
+  //   }else if(//ship is not full){
+  //     alert('Ship is not loaded, please pick another action.');
+  //     return;
+  //   }else{
+  //     //call gameState move ship, pass player color through
+  //     alert('Ship has sailed! Blocks unloaded. Starting a new round.')
+  //   }    
 
-    this.isTurn = false;
+  //   this.isTurn = false;
+  // }
+
+  ObeliskTotal(obliskBlocks){
+
   }
-
-  sledControl() {//auxiliary function
-
-
-  }
-
 }
-
-var black = new Player('brown')
