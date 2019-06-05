@@ -1,0 +1,121 @@
+.game-container {
+    height: 100vh;
+    border: 1px solid black;
+}
+.ocean {
+    height: 60%;
+    border: 1px solid black; 
+    position: relative;
+}
+.ship {
+    top: 10%;
+    left: 10%;
+    height: 8%;
+    width: 10%;
+    background-color: brown;
+    border: 1px solid black;
+    position: absolute;
+}
+.block-space {
+    position: absolute;
+    border: 1px solid black;
+    height: 80%;
+    width: 30%;
+    top: 10%;
+    right: 10%;
+    background-color: white;
+}
+.obelisk-board {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    right: 0%;
+    top: 0;
+    background-color: green;
+}
+.stack {
+    width: 15%;
+    height: 40%;
+    position: absolute;
+}
+.stack-one {
+    background-color: yellow;
+    left: 20%;
+    top: 20%;
+}
+.stack-two {
+    background-color: purple;
+    right: 20%;
+    top: 20%;
+}
+.action-bar {
+    height: 10%;
+    border: 1px solid black;
+    background-color: crimson;
+    text-align: center;
+    font-size: 30px;
+}
+.stats {
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+    align-items: center;
+    height: 30%;
+    border: 1px solid black;
+    background-color: aquamarine;
+}
+
+.player {
+    display: flex;
+    justify-content: space-around;
+    height: 90%;
+    width: 20%;
+    border: 1px solid black;
+    top: 5%;
+}
+.sled {
+    width: 40%;
+    height: 50%;
+    top: 20%;
+    background-color: lightsalmon;
+}
+.player-one {
+    left: 2.5%;
+    background-color: darkcyan;
+}
+
+.player-two {
+    background-color: greenyellow;
+}
+.score-container {
+    height: 90%;
+    width: 20%;
+    top: 5%;
+    background-color: lightpink;
+    border: 1px solid black;
+}
+.score {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30%;
+    width: 30%;
+}
+.score-one {
+    background-color: yellow;
+}
+.score-two {
+    background-color: purple;
+}
+.turn-track-container {
+    height: 90%;
+    width: 10%;
+    top: 5%;
+    background-color: skyblue;
+    border: 1px solid black;
+}
+.round-tracker {
+    height: 60%;
+    width: 60%;
+    background-color: darkorange;
+}
