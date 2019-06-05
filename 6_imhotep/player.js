@@ -38,6 +38,6 @@ class Player () {
   constructor () {
 
   }
-
+  
 
 }
