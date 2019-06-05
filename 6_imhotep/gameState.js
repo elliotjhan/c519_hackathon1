@@ -3,6 +3,7 @@
   //properties (variables)
     //shipDocked (ship is docked) - boolean
     //shipFull (ship is full) - boolean
+    //turn/ round trackers
 
 //methods
   //moveship(color) method -- parameter of color from player.js
