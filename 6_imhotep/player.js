@@ -111,4 +111,4 @@ class Player{
 
 }
 
-var black = new Player('brown')
+var black = new Player('black')
