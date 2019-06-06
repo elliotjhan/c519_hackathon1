@@ -15,13 +15,19 @@
     font-family: 'import';
     font-size: 10rem;
     text-align: center;
-    color: darkred;
+    color: #713d52;
     height: 60%;
     position: relative;
     background-image: url(./assets/images/coast.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+.ocean img {
+    top: 10%;
+    left: 40%;
+    height: 15%;
+    position: absolute;
 }
 .ship {
     font-size: 1rem;
@@ -30,6 +36,7 @@
     left: 5%;
     height: 30%;
     width: 30%;
+    color: #ffd56f;
     background-color: transparent;
     position: absolute;
     background-image: url(./assets/images/boat3.png);
@@ -43,7 +50,8 @@
     width: 15%;
     top: 0;
     right: 40%;
-    background-color: white;
+    background-color: #ffd56f;
+    color: #713d52;
 }
 .obelisk-board {
     position: absolute;
@@ -72,18 +80,34 @@
 }
 .stack-one {
     left: 50%;
+    color: #ffd56f;
 }
 .stack-two {
     right: 10%;
+    color: #ffd56f;
 }
 .action-bar {
     height: 7%;
-    border: 1px solid black;
-    background-color: maroon;
+    /* border: 1px solid black; */
+    background-color: #713d52;
     text-align: center;
     font-size: 30px;
     background-size: contain;
     background-position: center
+}
+.action-bar button{
+    font-size: 20px;
+    background-color:  #ffd56f;
+    border-radius: 3px;
+    margin-top: 1%;
+    margin-right: 4px;
+    margin-left: 4 px;
+    padding: 2px;
+    font-weight: bold;
+    border-color: #73562e;
+    font-family: Arial, Helvetica, sans-serif;
+    /* color:   #713d52; */
+    color: #73562e;
 }
 .stats {
     display: flex;
@@ -91,23 +115,27 @@
     justify-content: space-around;
     align-items: center;
     height: 30%;
-    border: 1px solid black;
-    background-color: aquamarine;
+    /* border: 1px solid black; */
+    /* background-color: #73562e; */
+    background-color: tan;
 }
 
 .player {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     height: 90%;
     width: 20%;
     border: 1px solid black;
     top: 5%;
 }
+.playerText{
+    width: 100%;
+}
 .sled {
-    width: 40%;
-    height: 50%;
-    top: 20%;
-    background-color: lightsalmon;
+    width: 100%;
+    height: 90%;
+    background-color: grey;
 }
 .player-one {
     background-color: darkcyan;
