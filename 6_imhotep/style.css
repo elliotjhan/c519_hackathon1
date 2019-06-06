@@ -137,13 +137,7 @@
     height: 90%;
     background-color: grey;
 }
-.player-one {
-    background-color: darkcyan;
-}
 
-.player-two {
-    background-color: greenyellow;
-}
 .score-container {
     height: 90%;
     width: 20%;
