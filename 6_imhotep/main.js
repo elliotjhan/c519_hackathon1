@@ -1,13 +1,10 @@
-
-
+$(document).ready(initApp);
 
 
 function initApp() {
   
   var game = new GameState();
+
   game.createPlayer();
-  return game.players;
-  
+  game.assignButtonHandlers();
 }
-var x = initApp();
-console.log(x);
