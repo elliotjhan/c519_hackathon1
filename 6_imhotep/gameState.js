@@ -19,15 +19,18 @@ class GameState {
  
   createPlayer(colorArray){
     
+    
     for (var i = 0; i < colorArray.length; i++){
+      var playerElement = $('#template').clone();
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
-      var playerElement = $('#template').clone();
-
+      //var className = 'player' + (i+1);
+      
+      
       playerElement.css({
         'background-color': colorArray[i],
       })
-      .addClass('player').removeClass('hidden').find('.sled').attr('id', `sled${i + 1}`);
+      .addClass(`player player${i+1}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
 
       playerElement.find('.playerText').text('Player ' + (i+1));
 
@@ -119,9 +122,6 @@ class GameState {
     } else {
       alert('Ship has sailed! Blocks unloaded. Starting a new round.');
       this.updateTurn();
-
-      console.log('this.players[this.playerTurn].obeliskTotal: ', this.players[this.playerTurn].obeliskTotal);
-
       this.players[this.playerTurn].obeliskTotal += 1;
       this.shipFull = false;
       this.shipDocked = true;
@@ -129,10 +129,9 @@ class GameState {
       $('.block-space').text('0/1');
     }    
 
-    console.log('this.players[this.playerTurn].obeliskTotal: ', this.players[this.playerTurn].obeliskTotal);
     $('.stack-one').text(this.players[0].obeliskTotal);
     $('.stack-two').text(this.players[1].obeliskTotal);
-    console.log('round', this.round);
+
   }
 
   allocatePoints(){
@@ -170,25 +169,66 @@ class GameState {
     if (this.playerTurn === 0) {
       this.playerTurn = 1;
 
-      $('.player-one').css({
-        'background-color': 'red'
+      $('.player1').css({
+        'border': 'red 5px solid'
       });
-      $('.player-two').css({
-        'background-color': 'grey'
-      })
+      $('.player2').css({
+        'border': 'black 1px solid'
+      });
+      $('.player3').css({
+        'border': 'black 1px solid'
+      });
+      $('.player4').css({
+        'border': 'black 1px solid'
+      });
 
-    } else {
-      this.playerTurn = 0;
+    } else if (this.playerTurn === 1) {
+      this.playerTurn = 2;
 
-      $('.player-two').css({
-        'background-color': 'red'
+      $('.player1').css({
+        'border': 'black 1px solid'
       });
-      $('.player-one').css({
-        'background-color': 'grey'
+      $('.player2').css({
+        'border': 'red 5px solid'
       });
-    }
+      $('.player3').css({
+        'border': 'black 1px solid'
+      });
+      $('.player4').css({
+        'border': 'black 1px solid'
+      });
+    } else if (this.playerTurn === 2) {
+      this.playerTurn = 3;
+
+      $('.player1').css({
+        'border': 'black 1px solid'
+      });
+      $('.player2').css({
+        'border': 'black 1px solid'
+      });
+      $('.player3').css({
+        'border': 'red 5px solid'
+      });
+      $('.player4').css({
+        'border': 'black 1px solid'
+      });
+  } else {
+    this.playerTurn = 0;
+
+    $('.player1').css({
+      'border': 'black 1px solid'
+    });
+    $('.player2').css({
+      'border': 'black 1px solid'
+    });
+    $('.player3').css({
+      'border': 'black 1px solid'
+    });
+    $('.player4').css({
+      'border': 'red 5px solid'
+    });
   }
-  
+}  
   resetState() {
     this.shipDocked = false;
     this.shipFull = false;
