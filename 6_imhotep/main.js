@@ -9,6 +9,8 @@ function initApp() {
   $('.stack-one').text('0');
   $('.stack-two').text('0');
   $('.block-space').text('0/1');
-  game.createPlayer();
-  game.assignButtonHandlers();
+  
+  $('#start-game-button2').on('click', game.startGame);
+  $('#start-game-button3').on('click', game.startGame);
+  $('#start-game-button4').on('click', game.startGame);
 }

@@ -7,17 +7,23 @@ class GameState {
     this.players = [];
     this.round = 1;
 
+    this.numberOfPlayers = null;
+    this.colorArray = [];
+
     this.getBlocks = this.getBlocks.bind(this);
     this.sailShip = this.sailShip.bind(this);
     this.loadShip = this.loadShip.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
  
-  createPlayer(){
-    var colorArray = ['brown', 'black'];
+  createPlayer(colorArray){
+    
     for (var i = 0; i < colorArray.length; i++){
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
-    }
+      
+    };
   }
 
   assignButtonHandlers(){
@@ -25,10 +31,38 @@ class GameState {
     $('#load').on('click', this.loadShip);
     $('#get-block').on('click', this.getBlocks);
 
+    $('#game-reset').on('click', this.resetState);
+
     for(var i = 0; i < this.players.length; i++){
       this.players[i].blockCount = 2 + i;
     }
+    $('.sled-one').text(this.players[0].blockCount + '/5');
+    $('.sled-two').text(this.players[1].blockCount + '/5');
+    
+  }
 
+
+  startGame(event){
+    debugger;
+
+    this.numberOfPlayers = $(event.currentTarget).text();
+
+    console.log('startGame called');
+    var numberOfPlayers = this.numberOfPlayers;
+    
+    $('#start-modal').css('display', 'none');
+
+    switch (numberOfPlayers){
+      case '2': this.colorArray = ['brown', 'black'];
+        break;
+      case '3': this.colorArray = ['brown', 'black', 'grey'];
+        break;
+      case '4': this.colorArray = ['brown', 'black', 'grey', 'white'];
+        break;
+    }
+
+    this.createPlayer(this.colorArray);
+    this.assignButtonHandlers();
   }
 
   loadShip(){
@@ -113,6 +147,7 @@ class GameState {
     if(this.round > 6) {
       this.allocatePoints();
       this.round = 1;
+      //display modal for reset game
     }
     $('.round-tracker').text(this.round);
   }
@@ -141,6 +176,27 @@ class GameState {
   }
   
   resetState() {
+    this.shipDocked = false;
+    this.shipFull = false;
+    this.playerTurn = 0;
+    this.round = 1;
 
+    $('.round-tracker').text(this.round);
+    $('.score-one').text('0');
+    $('.score-two').text('0');
+    $('.stack-one').text('0');
+    $('.stack-two').text('0');
+    $('.block-space').text('0/1');
+
+    for(var i = 0; i < this.players.length; i++){
+      this.players[i].score = null;
+      this.players[i].obeliskTotal = 0;
+      this.players[i].blockCount = null;
+    };
+  }
+
+  displayBlocks(){ 
+    $('.sled-one').text(this.players[0].blockCount + '/5');
+    $('.sled-two').text(this.players[1].blockCount + '/5');
   }
 }
