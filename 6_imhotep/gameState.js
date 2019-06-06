@@ -23,11 +23,14 @@ class GameState {
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
       var playerElement = $('#template').clone();
+
       playerElement.css({
         'background-color': colorArray[i],
       })
-      .addClass('player').removeClass('hidden');
+      .addClass('player').removeClass('hidden').find('.sled').attr('id', `sled${i + 1}`);
+
       playerElement.find('.playerText').text('Player ' + (i+1));
+
       $('.stats').append(playerElement);
 
     };
@@ -41,10 +44,14 @@ class GameState {
     $('#game-reset').on('click', this.resetState);
 
     for(var i = 0; i < this.players.length; i++){
+      
       this.players[i].blockCount = 2 + i;
-    }
-    $('.sled-one').text(this.players[0].blockCount + '/5');
-    $('.sled-two').text(this.players[1].blockCount + '/5');
+
+      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
+      console.log('player block count: ', this.players[i].blockCount + '/5');
+      
+    };
+    
     
   }
 
