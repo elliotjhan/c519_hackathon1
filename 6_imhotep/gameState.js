@@ -73,16 +73,17 @@ class GameState {
      return;
    }
  }
-
-  sailShip() {//player action3
-    //sailShip (moving the ship to the game board)
+ //player action3
+     //sailShip (moving the ship to the game board)
     //call GameState moveShip(this.color) method -- moves the ship
     //set isTurn to false
 
+  sailShip() {
     if(//ship is docked){
       alert('Ship is already docked. Please pick another action.');
       return;
-    }else if(//ship is not full){
+    //ship is not full)
+    } else if(//ship is not loaded){ 
       alert('Ship is not loaded, please pick another action.');
       return;
     }else{
@@ -108,10 +109,8 @@ class GameState {
       //move from current player to other player
       //undock the ship
   resetRound() {
-
+      this.updateTurn();
   }
-
-
 
   updateObeliskTotal () {
 
@@ -124,5 +123,4 @@ class GameState {
       this.playerTurn = 0;
     }
   }
-
 }
