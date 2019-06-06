@@ -22,7 +22,14 @@ class GameState {
     for (var i = 0; i < colorArray.length; i++){
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
-      
+      var playerElement = $('#template').clone();
+      playerElement.css({
+        'background-color': colorArray[i],
+      })
+      .addClass('player').removeClass('hidden');
+      playerElement.find('.playerText').text('Player ' + (i+1));
+      $('.stats').append(playerElement);
+
     };
   }
 
@@ -43,7 +50,7 @@ class GameState {
 
 
   startGame(event){
-    debugger;
+    
 
     this.numberOfPlayers = $(event.currentTarget).text();
 
@@ -53,11 +60,11 @@ class GameState {
     $('#start-modal').css('display', 'none');
 
     switch (numberOfPlayers){
-      case '2': this.colorArray = ['brown', 'black'];
+      case '2': this.colorArray = ['olive', 'darkorange'];
         break;
-      case '3': this.colorArray = ['brown', 'black', 'grey'];
+      case '3': this.colorArray = ['olive', 'darkorange', 'goldenrod'];
         break;
-      case '4': this.colorArray = ['brown', 'black', 'grey', 'white'];
+      case '4': this.colorArray = ['olive', 'darkorange', 'goldenrod', 'tan'];
         break;
     }
 
