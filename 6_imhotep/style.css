@@ -29,6 +29,10 @@
     height: 15%;
     position: absolute;
 }
+#moadalImage {
+    width: 50vw;
+    margin-left: 25vw;
+}
 .ship {
     font-size: 1rem;
     text-align: center;
@@ -181,6 +185,9 @@
     height: 100vh;
     width:100vw;
     background-image: url(assets/images/gameboard.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     overflow: auto;
     top: 0%;
     left:0%;
