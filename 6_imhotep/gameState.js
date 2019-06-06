@@ -6,6 +6,10 @@ class GameState {
     this.playerTurn = 0;
     this.players = [];
     this.round = 0;
+
+    this.getBlocks = this.getBlocks.bind(this);
+    this.sailShip = this.sailShip.bind(this);
+    this.loadShip = this.loadShip.bind(this);
   }
  
   createPlayer(){
@@ -16,47 +20,68 @@ class GameState {
     }
   }
 
-  loadShip(){
+  assignButtonHandlers(){
+    $('#sail').on('click', this.sailShip);
+    $('#load').on('click', this.loadShip);
+    $('#get-block').on('click', this.getBlocks);
 
+    for(var i = 0; i < this.players.length; i++){
+      this.players[i].blockCount = 2 + i;
+    }
+
+  }
+
+  loadShip(){
+    
     if(this.shipFull) {
       alert('Ship is already full, please choose another action.');
     } else {
-      this.players[this.playerTurn].blockCount--;
+      this.players[this.playerTurn].blockCount -= 1;
       this.updateTurn();
       this.shipFull = true;
     }
  }
 
- getBlocks() {
+  getBlocks() {
+   
+    if (this.players[this.playerTurn].blockCount < 5) {
+      this.players[this.playerTurn].blockCount += 3;
 
-   var blocks = this.players[this.playerTurn].blockCount;
-   if (blocks < 5) {
-     blocks += 3;
-     if (blocks > 5) {
-     blocks = 5;
-     }
-     this.updateTurn();
+      if (this.players[this.playerTurn].blockCount > 5) {
+        this.players[this.playerTurn].blockCount = 5;
+      };
+
+      this.updateTurn();
+
     } else {
-     alert('Sled is already full, please choose another action.');
-     return;
+
+      alert('Sled is already full, please choose another action.');
+      return;
     }
- }
+  }
 
   sailShip() {
+    
     if(this.shipDocked){
       alert('Ship is already docked. Please pick another action.');
       return;
-    //ship is not full)
-    } else if (!this.shipFull) {//ship is not loaded){ 
+
+    } else if (!this.shipFull) {
       alert('Ship is not loaded, please pick another action.');
+
       return;
     } else {
-      alert('Ship has sailed! Blocks unloaded. Starting a new round.')
+      alert('Ship has sailed! Blocks unloaded. Starting a new round.');
       this.updateTurn();
+
+      console.log('this.players[this.playerTurn].obeliskTotal: ', this.players[this.playerTurn].obeliskTotal);
+
       this.players[this.playerTurn].obeliskTotal += 1;
       this.shipFull = false;
       this.shipDocked = true;
     }    
+
+    console.log('this.players[this.playerTurn].obeliskTotal: ', this.players[this.playerTurn].obeliskTotal);
   }
 
   allocatePoints(){
@@ -82,10 +107,26 @@ class GameState {
   updateTurn() {
     if (this.playerTurn === 0) {
       this.playerTurn = 1;
+
+      $('.player-one').css({
+        'background-color': 'red'
+      });
+      $('.player-two').css({
+        'background-color': 'grey'
+      })
+
     } else {
       this.playerTurn = 0;
+
+      $('.player-two').css({
+        'background-color': 'red'
+      });
+      $('.player-one').css({
+        'background-color': 'grey'
+      });
     }
   }
+
 }
 
 //create a class called GameState (data and values related to game)
