@@ -1,9 +1,13 @@
-$(document).ready(initApp);
+
+
+
 
 function initApp() {
-  // var player1 = new Player();
-  // var player2 = new Player();
-  //link to game state
+  
+  var game = new GameState();
+  game.createPlayer();
+  return game.players;
   
 }
-
+var x = initApp();
+console.log(x);
