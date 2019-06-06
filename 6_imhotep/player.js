@@ -1,9 +1,9 @@
 
 class Player{
-  constructor (color, startPosition) {
+  constructor (color) {
     this.score = null;
     this.obeliskTotal = 0;
     this.color = color;
-    this.blockCount = null;
+    this.blockCount = 0;
   }
 }
