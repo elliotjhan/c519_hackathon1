@@ -257,6 +257,9 @@
     background-color: #e6b4bd;
 
 }
+.redBorder {
+    border: red 5px solid;
+}
 
 .hidden{
     display: none;
