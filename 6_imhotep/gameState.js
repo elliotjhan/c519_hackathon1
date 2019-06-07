@@ -24,7 +24,7 @@ class GameState {
       var playerElement = $('#template').clone();
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
-      //var className = 'player' + (i+1);
+     
       
       
       playerElement.css({
@@ -161,7 +161,7 @@ class GameState {
     if(this.round > 6) {
       this.allocatePoints();
       this.round = 1;
-      //display modal for reset game
+      
     }
     $('.round-tracker').text(this.round);
   }
