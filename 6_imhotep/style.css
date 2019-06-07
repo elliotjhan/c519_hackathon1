@@ -66,30 +66,43 @@
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center
+    background-position: center;
+    display: flex; 
+    justify-content: flex-end;
+    
 }
 
 .stack {
     font-size: 2rem;
     text-align: center;
     top: 30%;
-    width: 20%;
+    width: 10%;
     height: 80%;
-    position: absolute;
+    /* position: absolute; */
     background-image: url(./assets/images/obelisk\ transparent.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-color: transparent;
+    color: #ffd56f;
 }
-.stack-one {
+/* .stack1 {
     left: 50%;
     color: #ffd56f;
 }
-.stack-two {
+.stack2 {
     right: 10%;
     color: #ffd56f;
 }
+.stack3 {
+    right: 10%;
+    color: #ffd56f;
+}
+.stack4 {
+    right: 10%;
+    color: #ffd56f;
+} */
+
 .action-bar {
     height: 10%;
     background-color: #713d52;
