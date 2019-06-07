@@ -55,7 +55,13 @@
     top: 0;
     right: 40%;
     background-color: #ffd56f;
-    color: #713d52;
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
+    font-size: 2rem;
 }
 .obelisk-board {
     position: absolute;
@@ -167,19 +173,46 @@
 }
 .playerText{
     width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
 }
 .sled {
     width: 100%;
     height: 90%;
-    background-color: grey;
+    background-image: url(./assets/images/oie_transparent\ \(1\).png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
+    text-align: center;
 }
 
 .score-container {
     height: 90%;
-    width: 20%;
+    width: 15%;
     top: 5%;
     background-color: lightpink;
     border: 1px solid black;
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
+    font-size: 2rem;
+    text-align: center;
 }
 .score {
     display: flex;
@@ -187,6 +220,7 @@
     align-items: center;
     height: 30%;
     width: 30%;
+    margin: 0 auto;
 }
 .score-one {
     background-color: yellow;
@@ -196,15 +230,26 @@
 }
 .turn-track-container {
     height: 90%;
-    width: 10%;
+    width: 15%;
     top: 5%;
     background-color: skyblue;
     border: 1px solid black;
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
+    font-size: 2rem;
+    text-align: center;
 }
 .round-tracker {
-    height: 60%;
+    height: 30%;
     width: 60%;
     background-color: darkorange;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 1vh;
 }
 
 .modal-container{
