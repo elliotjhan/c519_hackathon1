@@ -29,7 +29,7 @@
     height: 15%;
     position: absolute;
 }
-#moadalImage {
+#modalImage {
     width: 50vw;
     margin-left: 25vw;
 }
@@ -216,7 +216,7 @@
     position: fixed;
     height: 100vh;
     width:100vw;
-    background-image: url(assets/images/gameboard.png);
+    background-image: url(assets/images/imhotep-touchedup-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -226,19 +226,14 @@
     z-index: 1;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 .modal-body{
     position: absolute;
-    /* background-color: #b85e40; */
     top: 45%;
-    left: 41%;
+    left: 35%;
     padding: 20px;
-    /* border: 1px solid #888; */
     width: 30%; 
     text-align: center;
- 
-   
     }
 
 .modal-buttons{
@@ -247,6 +242,14 @@
 }
 
 .modal-text{
+    font-family: 'import';
+    font-size: 4rem;
+     text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+    color: rgb(73, 28, 110);
 
 }
 
