@@ -37,6 +37,7 @@ class GameState {
       $('.stats').append(playerElement);
 
     };
+    $('.player1').addClass('redBorder');
   }
 
   assignButtonHandlers(){
@@ -166,68 +167,42 @@ class GameState {
   }
 
   updateTurn() {
+
     if (this.playerTurn === 0) {
-      this.playerTurn = 1;
+      //this.playerTurn = 1;
+      $('.player1').removeClass('redBorder');
+      $('.player2').addClass('redBorder');
 
-      $('.player1').css({
-        'border': 'red 5px solid'
-      });
-      $('.player2').css({
-        'border': 'black 1px solid'
-      });
-      $('.player3').css({
-        'border': 'black 1px solid'
-      });
-      $('.player4').css({
-        'border': 'black 1px solid'
-      });
+    } 
+    if (this.playerTurn === 1) {
+      //this.playerTurn = 2;
+      $('.player2').removeClass('redBorder');
+      if(this.playerTurn === this.players.length -1) {
+        $('.player1').addClass('redBorder');
+      } else {
+        $('.player3').addClass('redBorder');
+      }
+    } 
+    if (this.playerTurn === 2) {
+      //this.playerTurn = 3;
+      $('.player3').removeClass('redBorder');
+      if(this.playerTurn === this.players.length -1) {
+        $('.player1').addClass('redBorder');
+      } else {
+        $('.player4').addClass('redBorder');
+      }
 
-    } else if (this.playerTurn === 1) {
-      this.playerTurn = 2;
-
-      $('.player1').css({
-        'border': 'black 1px solid'
-      });
-      $('.player2').css({
-        'border': 'red 5px solid'
-      });
-      $('.player3').css({
-        'border': 'black 1px solid'
-      });
-      $('.player4').css({
-        'border': 'black 1px solid'
-      });
-    } else if (this.playerTurn === 2) {
-      this.playerTurn = 3;
-
-      $('.player1').css({
-        'border': 'black 1px solid'
-      });
-      $('.player2').css({
-        'border': 'black 1px solid'
-      });
-      $('.player3').css({
-        'border': 'red 5px solid'
-      });
-      $('.player4').css({
-        'border': 'black 1px solid'
-      });
-  } else {
-    this.playerTurn = 0;
-
-    $('.player1').css({
-      'border': 'black 1px solid'
-    });
-    $('.player2').css({
-      'border': 'black 1px solid'
-    });
-    $('.player3').css({
-      'border': 'black 1px solid'
-    });
-    $('.player4').css({
-      'border': 'red 5px solid'
-    });
-  }
+    } if (this.playerTurn === 3) {
+      //this.playerTurn = 0;
+      $('.player4').removeClass('redBorder');
+      $('.player1').addClass('redBorder');
+    }
+    
+    if(this.playerTurn === this.players.length - 1 ) {
+      this.playerTurn = 0;
+    } else {
+      this.playerTurn++
+    }
 }  
   resetState() {
     this.shipDocked = false;
