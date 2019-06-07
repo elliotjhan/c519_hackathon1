@@ -15,6 +15,7 @@ class GameState {
     this.loadShip = this.loadShip.bind(this);
     this.resetState = this.resetState.bind(this);
     this.startGame = this.startGame.bind(this);
+   
   }
  
   createPlayer(colorArray){
@@ -35,6 +36,13 @@ class GameState {
       playerElement.find('.playerText').text('Player ' + (i+1));
 
       $('.stats').append(playerElement);
+
+      var obeliskElement = $('#obbTemp').clone();
+      obeliskElement.addClass(`stack${i + 1}`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
+
+      console.log(obeliskElement);
+      $('.obelisk-board').append(obeliskElement);
+
 
     };
     $('.player1').addClass('redBorder');
@@ -89,9 +97,24 @@ class GameState {
     } else {
       this.players[this.playerTurn].blockCount -= 1;
       $('.block-space').text('1/1');
+
+      console.log('before')
+      console.log(`#sled${this.playerTurn + 1}`)
+      console.log(`${this.players[this.playerTurn].blockCount}/5`)
+
+      $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
+
+      console.log('after')
+      console.log(`#sled${this.playerTurn + 1}`)
+      console.log(`${this.players[this.playerTurn].blockCount}/5`)
+
       this.updateTurn();
       this.shipFull = true;
+   
     }
+    
+
+    
  }
 
   getBlocks() {
@@ -102,6 +125,7 @@ class GameState {
         this.players[this.playerTurn].blockCount = 5;
       };
 
+      $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
       this.updateTurn();
 
     } else {
@@ -122,6 +146,7 @@ class GameState {
       return;
     } else {
       alert('Ship has sailed! Blocks unloaded. Starting a new round.');
+
       this.updateTurn();
       this.players[this.playerTurn].obeliskTotal += 1;
       this.shipFull = false;
