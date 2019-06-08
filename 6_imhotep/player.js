@@ -5,13 +5,18 @@ class Player{
     this.obeliskTotal = 0;
     this.color = color;
     this.blockCount = 0;
-    this.domElement;
+
+    this.domElements = {};
+    this.domElements.player;
+    this.domElements.obelisk;
+    
   }
   markTurn(){
-    this.domElement.addClass('currentTurn');
+    console.log('this.domElement', this.domElements.player);
+    this.domElements.player.addClass('currentTurn');
   }
   unmarkTurn(){
-    this.domElement.removeClass('currentTurn');
+    this.domElements.player.removeClass('currentTurn');
   }
 }
 
