@@ -1,39 +1,40 @@
 
 class GameState {
   constructor() {
-    this.shipDocked = false;
-    this.shipFull = false;
-    this.playerTurn = 0;
-    this.players = [];
-    this.round = 1;
-
-    this.numberOfPlayers = null;
-    this.colorArray = [];
-
     this.getBlocks = this.getBlocks.bind(this);
     this.sailShip = this.sailShip.bind(this);
     this.loadShip = this.loadShip.bind(this);
     this.resetState = this.resetState.bind(this);
     this.startGame = this.startGame.bind(this);
    
+    this.shipDocked = false;
+    this.shipFull = false;
+    this.playerTurn = 0;
+    this.players = [];
+    this.round = 1; 
+
+    this.numberOfPlayers = null;
+    this.colorArray = [];
   }
  
   createPlayer(colorArray){
-    
-    
+     
     for (var i = 0; i < colorArray.length; i++){
       var playerElement = $('#template').clone();
       var player = new Player(colorArray[i], i+1);
       this.players[i] = player;
      
-      
-      
       playerElement.css({
         'background-color': colorArray[i],
       })
+
+
       .addClass(`player player${i+1}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
 
       playerElement.find('.playerText').text('Player ' + (i+1));
+
+      // //addition
+      // playerElement.addClass(colarArray[i]+'-block');
 
       $('.stats').append(playerElement);
 
@@ -44,8 +45,8 @@ class GameState {
       $('.obelisk-board').append(obeliskElement);
 
 
-    };
-    $('.player1').addClass('redBorder');
+    }
+    this.markCurrentPlayer();
   }
 
   assignButtonHandlers(){
@@ -70,10 +71,8 @@ class GameState {
 
   startGame(event){
     
-
     this.numberOfPlayers = $(event.currentTarget).text();
 
-    console.log('startGame called');
     var numberOfPlayers = this.numberOfPlayers;
     
     $('#start-modal').css('display', 'none');
@@ -98,9 +97,6 @@ class GameState {
       this.players[this.playerTurn].blockCount -= 1;
       $('.block-space').text('1/1');
 
-      console.log('before')
-      console.log(`#sled${this.playerTurn + 1}`)
-      console.log(`${this.players[this.playerTurn].blockCount}/5`)
 
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
 
@@ -192,43 +188,22 @@ class GameState {
   }
 
   updateTurn() {
-
-    if (this.playerTurn === 0) {
-      //this.playerTurn = 1;
-      $('.player1').removeClass('redBorder');
-      $('.player2').addClass('redBorder');
-
-    } 
-    if (this.playerTurn === 1) {
-      //this.playerTurn = 2;
-      $('.player2').removeClass('redBorder');
-      if(this.playerTurn === this.players.length -1) {
-        $('.player1').addClass('redBorder');
-      } else {
-        $('.player3').addClass('redBorder');
-      }
-    } 
-    if (this.playerTurn === 2) {
-      //this.playerTurn = 3;
-      $('.player3').removeClass('redBorder');
-      if(this.playerTurn === this.players.length -1) {
-        $('.player1').addClass('redBorder');
-      } else {
-        $('.player4').addClass('redBorder');
-      }
-
-    } if (this.playerTurn === 3) {
-      //this.playerTurn = 0;
-      $('.player4').removeClass('redBorder');
-      $('.player1').addClass('redBorder');
-    }
-    
-    if(this.playerTurn === this.players.length - 1 ) {
+    // $('.redBorder').removeClass('redBorder');
+    this.unmarkCurrentPlayer();
+    this.playerTurn++;
+    if (this.playerTurn === this.players.length) {
       this.playerTurn = 0;
-    } else {
-      this.playerTurn++
     }
-}  
+    this.markCurrentPlayer();
+    //add in dom elements
+  }
+  markCurrentPlayer(){
+    this.players[this.playerTurn].markTurn();
+  }  
+  unmarkCurrentPlayer(){
+    this.players[this.playerTurn].unmarkTurn();
+  } 
+
   resetState() {
     this.shipDocked = false;
     this.shipFull = false;
