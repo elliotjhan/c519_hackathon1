@@ -61,7 +61,7 @@
 		-1px 1px 0 rgb(255, 255, 255),
         1px 1px 0 rgb(255, 255, 255);
     color: rgb(73, 28, 110);
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 .obelisk-board {
     position: absolute;
@@ -74,40 +74,29 @@
     background-size: cover;
     background-position: center;
     display: flex; 
-    justify-content: flex-end;
+    justify-content: flex-end;  
+    align-items: center;
     
 }
 
 .stack {
-    font-size: 2rem;
+    font-size: 4rem;
     text-align: center;
-    top: 30%;
-    width: 10%;
+    width: 14%;
     height: 80%;
-    /* position: absolute; */
     background-image: url(./assets/images/obelisk\ transparent.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-color: transparent;
-    color: #ffd56f;
+    color: #390b57;
+    font-weight: bold;
+    text-shadow:
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
 }
-/* .stack1 {
-    left: 50%;
-    color: #ffd56f;
-}
-.stack2 {
-    right: 10%;
-    color: #ffd56f;
-}
-.stack3 {
-    right: 10%;
-    color: #ffd56f;
-}
-.stack4 {
-    right: 10%;
-    color: #ffd56f;
-} */
 
 .action-bar {
     height: 10%;
@@ -151,8 +140,9 @@
     background-color: black;
 }
 .action-bar button{
-    font-size: 20px;
+    font-size: 2.4rem;
     background-color:  #ffd56f;
+    opacity: 0.8;
     border-radius: 3px;
     margin-top: 1%;
     margin-right: 4px;
@@ -186,14 +176,15 @@
 }
 .playerText{
     width: 100%;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
     text-shadow:
-		-1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-        1px 1px 0 rgb(255, 255, 255);
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
     color: rgb(73, 28, 110);
+    font-family: 'import';
 }
 .sled {
     width: 100%;
@@ -203,13 +194,16 @@
     background-size: contain;
     background-position: center;
     background-color: transparent;
-    text-shadow:
-		-1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-        1px 1px 0 rgb(255, 255, 255);
     color: rgb(73, 28, 110);
+    text-shadow:
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
     text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'import';
 }
 
 .score-container {
@@ -219,13 +213,14 @@
     background-color: lightpink;
     border: 1px solid black;
     text-shadow:
-		-1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-        1px 1px 0 rgb(255, 255, 255);
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
     color: rgb(73, 28, 110);
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
+    font-family: 'import';
 }
 .score {
     display: flex;
@@ -239,7 +234,7 @@
     background-color: yellow;
 }
 .score-two {
-    background-color: purple;
+    background-color: maroon;
 }
 .turn-track-container {
     height: 90%;
@@ -248,13 +243,14 @@
     background-color: skyblue;
     border: 1px solid black;
     text-shadow:
-		-1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-        1px 1px 0 rgb(255, 255, 255);
+    -1px -1px 0 rgba(255, 255, 255, 0.582),
+    1px -1px 0 rgb(255, 255, 255, 0.582),
+    -1px 1px 0 rgb(255, 255, 255, 0.582),
+    1px 1px 0 rgb(255, 255, 255, 0.582);
     color: rgb(73, 28, 110);
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
+    font-family: 'import';
 }
 .round-tracker {
     height: 30%;
@@ -263,6 +259,7 @@
     text-align: center;
     margin: 0 auto;
     padding-top: 1vh;
+    font-family: 'import';
 }
 
 .modal-container{
@@ -294,34 +291,28 @@
     text-align: center;
     }
 
-.modal-buttons{
-    display:flex;
-    justify-content: space-around;
+.modal-button{  
+    font-size: 3rem;
+    font-family: 'import';
+    border-radius: 10%;
+    background-color: #e6b4bd;
+    width: 6vw;
 }
 
 .modal-text{
     font-family: 'import';
-    font-size: 4rem;
-     text-shadow:
-		-1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-        1px 1px 0 rgb(255, 255, 255);
+    font-size: 5rem;
+    text-shadow:
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
     color: rgb(73, 28, 110);
-
-}
-
-.modal-button{
-    height: 50px;
-    width: 100px;
-    border-radius: 10%;
-    background-color: #e6b4bd;
 
 }
 .currentTurn {
     border: red 5px solid;
 }
-
 
 .hidden{
     display: none; 

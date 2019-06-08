@@ -7,12 +7,11 @@ class Player{
     this.blockCount = 0;
 
     this.domElements = {};
-    this.domElements.player;
+    this.domElements.player; 
     this.domElements.obelisk;
     
   }
   markTurn(){
-    console.log('this.domElement', this.domElements.player);
     this.domElements.player.addClass('currentTurn');
   }
   unmarkTurn(){
@@ -20,4 +19,3 @@ class Player{
   }
 }
 
-//this .domElement
