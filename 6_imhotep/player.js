@@ -10,10 +10,8 @@ class Player{
       player: null,
       obelisk: null
     };
-  
   }
   markTurn(){
-    console.log('this.domElement', this.domElements.player);
     this.domElements.player.addClass('currentTurn');
   }
   unmarkTurn(){
@@ -21,4 +19,3 @@ class Player{
   }
 }
 
-//this .domElement
