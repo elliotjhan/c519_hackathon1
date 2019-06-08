@@ -1,4 +1,5 @@
 
+//test
 class GameState {
   constructor() {
     this.getBlocks = this.getBlocks.bind(this);
@@ -38,12 +39,15 @@ class GameState {
 
       $('.stats').append(playerElement);
 
+      
       var obeliskElement = $('#obbTemp').clone();
       obeliskElement.addClass(`stack${i + 1}`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
 
       console.log(obeliskElement);
       $('.obelisk-board').append(obeliskElement);
 
+      this.players[i].domElements.player = playerElement;//storing player dom element inside the player object for recall later
+      this.players[i].domElements.obelisk = obeliskElement;//storing obelisk dom element inside the player object for recall later
 
     }
     this.markCurrentPlayer();
@@ -53,6 +57,9 @@ class GameState {
     $('#sail').on('click', this.sailShip);
     $('#load').on('click', this.loadShip);
     $('#get-block').on('click', this.getBlocks);
+    $('#start-game-button2').on('click', game.startGame);
+    $('#start-game-button3').on('click', game.startGame);
+    $('#start-game-button4').on('click', game.startGame);
 
     $('#game-reset').on('click', this.resetState);
 
@@ -193,7 +200,7 @@ class GameState {
     this.playerTurn++;
     if (this.playerTurn === this.players.length) {
       this.playerTurn = 0;
-    }
+    };
     this.markCurrentPlayer();
     //add in dom elements
   }
