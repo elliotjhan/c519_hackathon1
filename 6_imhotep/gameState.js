@@ -61,10 +61,12 @@ class GameState {
 
     $('#game-reset').on('click', this.resetState);
 
+
     for(var i = 0; i < this.players.length; i++){
       this.players[i].blockCount = 2 + i;
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
     };
+
   }
 
   startGame(event){
@@ -85,13 +87,16 @@ class GameState {
     }
 
     this.createPlayer(this.colorArray);
+
     
     for(var i = 0; i < this.players.length; i++){
       
+
       this.players[i].blockCount = 2 + i;
 
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
       console.log('player block count: ', this.players[i].blockCount + '/5');
+
       
     }
   }
@@ -100,6 +105,7 @@ class GameState {
     debugger;
     console.log('inside loadship')
     if(this.shipFull[0]) {
+
       alert('Ship is already full, please choose another action.');
 
     } else {
