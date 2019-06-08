@@ -1,5 +1,4 @@
 
-//test
 class GameState {
   constructor() {
     this.getBlocks = this.getBlocks.bind(this);
