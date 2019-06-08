@@ -1,4 +1,4 @@
-//test
+
 class Player{
   constructor (color) {
     this.score = null;
@@ -6,10 +6,10 @@ class Player{
     this.color = color;
     this.blockCount = 0;
 
-    this.domElements = {};
-    this.domElements.player; 
-    this.domElements.obelisk;
-    
+    this.domElements = {
+      player: null,
+      obelisk: null
+    };
   }
   markTurn(){
     this.domElements.player.addClass('currentTurn');
