@@ -22,7 +22,7 @@ class GameState {
      
     for (var i = 0; i < colorArray.length; i++){
       var playerElement = $('#template').clone();
-      var player = new Player(colorArray[i], i+1);
+      var player = new Player(colorArray[i]);
       this.players[i] = player;
      
       playerElement.css({
@@ -63,16 +63,6 @@ class GameState {
 
     $('#game-reset').on('click', this.resetState);
 
-    for(var i = 0; i < this.players.length; i++){
-      
-      this.players[i].blockCount = 2 + i;
-
-      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
-      console.log('player block count: ', this.players[i].blockCount + '/5');
-      
-    };
-    
-    
   }
 
 
@@ -94,10 +84,20 @@ class GameState {
     }
 
     this.createPlayer(this.colorArray);
-    this.assignButtonHandlers();
+
+    for (var i = 0; i < this.players.length; i++) {
+
+      this.players[i].blockCount = 2 + i;
+
+      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
+      console.log('player block count: ', this.players[i].blockCount + '/5');
+
+    };
+    
   }
 
   loadShip(){
+    console.log('loadship called');
     if(this.shipFull) {
       alert('Ship is already full, please choose another action.');
     } else {
