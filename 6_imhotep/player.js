@@ -1,4 +1,4 @@
-
+//test
 class Player{
   constructor (color) {
     this.score = null;
