@@ -6,10 +6,11 @@ class Player{
     this.color = color;
     this.blockCount = 0;
 
-    this.domElements = {};
-    this.domElements.player;
-    this.domElements.obelisk;
-    
+    this.domElements = {
+      player: null,
+      obelisk: null
+    };
+  
   }
   markTurn(){
     console.log('this.domElement', this.domElements.player);

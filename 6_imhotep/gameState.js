@@ -9,11 +9,11 @@ class GameState {
     this.startGame = this.startGame.bind(this);
    
     this.shipDocked = false;
-    this.shipFull = false;
+    this.shipFull = [];
     this.playerTurn = 0;
     this.players = [];
     this.round = 1; 
-
+    //we should be able to get rid of numberOfPlayers and colorArray
     this.numberOfPlayers = null;
     this.colorArray = [];
   }
@@ -22,7 +22,7 @@ class GameState {
      
     for (var i = 0; i < colorArray.length; i++){
       var playerElement = $('#template').clone();
-      var player = new Player(colorArray[i], i+1);
+      var player = new Player(colorArray[i]);
       this.players[i] = player;
      
       playerElement.css({
@@ -63,18 +63,8 @@ class GameState {
 
     $('#game-reset').on('click', this.resetState);
 
-    for(var i = 0; i < this.players.length; i++){
-      
-      this.players[i].blockCount = 2 + i;
 
-      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
-      console.log('player block count: ', this.players[i].blockCount + '/5');
-      
-    };
-    
-    
   }
-
 
   startGame(event){
     
@@ -94,11 +84,20 @@ class GameState {
     }
 
     this.createPlayer(this.colorArray);
-    this.assignButtonHandlers();
+    for(var i = 0; i < this.players.length; i++){
+      
+      this.players[i].blockCount = 2 + i;
+
+      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
+      console.log('player block count: ', this.players[i].blockCount + '/5');
+      
+    }
   }
 
   loadShip(){
-    if(this.shipFull) {
+    debugger;
+    console.log('inside loadship')
+    if(this.shipFull[0]) {
       alert('Ship is already full, please choose another action.');
     } else {
       this.players[this.playerTurn].blockCount -= 1;
@@ -111,16 +110,16 @@ class GameState {
       console.log(`#sled${this.playerTurn + 1}`)
       console.log(`${this.players[this.playerTurn].blockCount}/5`)
 
+      this.shipFull.push(this.colorArray[this.playerTurn]);
       this.updateTurn();
-      this.shipFull = true;
+    
    
     }
-    
-
     
  }
 
   getBlocks() {
+    // debugger;
     if (this.players[this.playerTurn].blockCount < 5) {
       this.players[this.playerTurn].blockCount += 3;
 
@@ -139,6 +138,8 @@ class GameState {
   }
 
   sailShip() {
+    debugger;
+    event.stopPropagation();
     if(this.shipDocked){
       alert('Ship is already docked. Please pick another action.');
       return;
@@ -213,7 +214,7 @@ class GameState {
 
   resetState() {
     this.shipDocked = false;
-    this.shipFull = false;
+    this.shipFull = [];
     this.playerTurn = 0;
     this.round = 1;
 
