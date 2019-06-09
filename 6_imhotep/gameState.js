@@ -6,6 +6,7 @@ class GameState {
     this.loadShip = this.loadShip.bind(this);
     this.resetState = this.resetState.bind(this);
     this.startGame = this.startGame.bind(this);
+    this.instructions = this.instructions.bind(this);
    
     this.shipDocked = false;
     this.shipFull = [];
@@ -59,6 +60,8 @@ class GameState {
     $('#start-game-button3').on('click', game.startGame);
     $('#start-game-button4').on('click', game.startGame);
 
+    $('.instructions').on('click', this.instructions);
+
     $('#game-reset').on('click', this.resetState);
 
 
@@ -106,7 +109,7 @@ class GameState {
  }
 
   getBlocks() {
-
+    
     if (this.players[this.playerTurn].blockCount < 5) {
       this.players[this.playerTurn].blockCount += 3;
 
@@ -230,5 +233,9 @@ class GameState {
       this.players[i].obeliskTotal = 0;
       this.players[i].blockCount = null;
     };
+  }
+
+  instructions() {
+    alert("IMHOTEP, Builder of Egypt.\nThe goal is to get as many stones on the obelisk as possible\nin 6 rounds of play. Each player can perform one move: \nget more blocks, place a stone into the ship, or sail the ship.\nOnce he/she takes a move, play moves to the next player. \nAt the end of the game points are awarded in the following way: \n most stones - 15 points, 2nd most stones - 10 points, \n3rd most stones - 5 points, and 4th most stones - 1 point. \nWhen there are ties the points are divided. \nTO BEGIN THE GAME\nSelect the number of players from the buttons at the bottom \nof the entry screen.\nThe first player begins with 2 stones, the second player with \nthree stones, and the third and forth player begin with four stones.\n")
   }
 }
