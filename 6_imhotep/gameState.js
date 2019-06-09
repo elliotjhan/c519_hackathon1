@@ -94,6 +94,14 @@ class GameState {
 
       alert('Ship is already full, please choose another action.');
 
+      return;
+
+    }else if (this.players[this.playerTurn].blockCount < 1) {
+
+      alert('No blocks available to load ship, please choose another action.');
+
+      return;
+
     }else{
 
       this.players[this.playerTurn].blockCount -= 1;
@@ -134,6 +142,7 @@ class GameState {
       alert('Ship is not loaded, please pick another action.');
 
       return;
+
     }else{
       alert('Ship has sailed! Blocks unloaded. Starting a new round.');
 
@@ -156,26 +165,143 @@ class GameState {
 
   allocatePoints(){// this will all need to be redone once we fix obelisk block tracking
     
-    for(var i = 0; i > this.players.length; i++){
+    var winner;
+    var sortArray = [];
 
+    for(var i = 0; i < this.players.length; i++){
+
+      sortArray.push(this.players[i]);
+    };
+
+
+    var k = 0;
+    while (k < sortArray.length) {
+      for (var j = 0; j < sortArray.length - 1; j++) {
+        if (sortArray[j].obeliskTotal > sortArray[j + 1].obeliskTotal) {
+
+          var x = sortArray[j];
+          var y = sortArray[j + 1];
+
+          sortArray[j] = y;
+          sortArray[j + 1] = x;
+        }
+      }
+      k++;
     }
+    
+    switch(sortArray.length){
+      case 4: 
 
-    if(p1Total > p2Total) {
-      this.players[0].score += 10;
-      this.players[1].score += 1;
+        if(sortArray[3].obeliskTotal > sortArray[2].obeliskTotal) {
+          sortArray[3].points += 15;
+          winner = 'Player 1';
+          
+          if(sortArray[2].obeliskTotal > sortArray[1].obeliskTotal) {
+            sortArray[2].points += 10;
+            
 
-    }else if(p1Total < p2Total){
+            if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal) {
+              sortArray[1].points += 5;
+              sortArray[0].points += 1;
+              break;
 
-      this.players[1].score += 10;
-      this.players[0].score += 1;
-    }else{
+            }else if(sortArray[1].obeliskTotal === sortArray[0].obeliskTotal) {
+              sortArray[1].points += 3;
+              sortArray[0].points += 3;
+              break;
+            };
 
-      this.players[1].score += 5;
-      this.players[0].score += 5;
-    }
-    $('.round-tracker').text(this.round);
-    $('.score-one').text(this.players[0].score);
-    $('.score-two').text(this.players[1].score);
+          }else if(sortArray[2].obeliskTotal === sortArray[1].obeliskTotal) {
+            if(sortArray[1].obeliskTotal === sortArray[0].obeliskTotal) {
+              sortArray[0].points += 5;
+              sortArray[0].points += 5;
+              sortArray[0].points += 5;
+              break;
+            };
+          };
+        }else if(sortArray[3].obeliskTotal === sortArray[2].obeliskTotal){
+          if (sortArray[2].obeliskTotal === sortArray[1].obeliskTotal){
+            if (sortArray[1].obeliskTotal === sortArray[0].obeliskTotal){
+              sortArray[3].points  += 7;
+              sortArray[2].points  += 7;
+              sortArray[1].points  += 7;
+              sortArray[0].points  += 7;
+              winner = 'Four-way Tie!'
+              break;
+
+            } else if (sortArray[1].obeliskTotal > sortArray[0].obeliskTotal){
+              sortArray[3].points += 8;
+              sortArray[2].points  += 8;
+              sortArray[1].points  += 8;
+              sortArray[0].points  += 1;
+            };
+
+          } else if (sortArray[2].obeliskTotal > sortArray[1].obeliskTotal){
+            sortArray[3].points += 12;
+            sortArray[2].points += 12;
+            winner = 'Player 1 and 2 Tie for First!'
+
+            if (sortArray[1].obeliskTotal === sortArray[0].obeliskTotal) {
+              sortArray[1].points += 3;
+              sortArray[0].points += 3;
+              break;
+
+            } else if (sortArray[1].obeliskTotal > sortArray[0].obeliskTotal) {
+              sortArray[1].points += 5;
+              sortArray[0].points += 1;
+            };
+          };
+        };
+      
+        break;
+      case 3: 
+
+        if(sortArray[2].obeliskTotal > sortArray[1].obeliskTotal) {
+          sortArray[2].points += 12;
+          pointsToAward -= 12;
+          
+          if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal){
+            sortArray[1].points += 7;
+            sortArray[0].points += 2;
+            break;
+
+          }else if(sortArray[1].obeliskTotal = sortArray[0].obeliskTotal){
+            sortArray[1].points += 5;
+            sortArray[0].points += 5;
+            break;
+          };
+
+        }else if(sortArray[2].obeliskTotal === sortArray[1].obeliskTotal){
+          sortArray[2].points += 9;
+          sortArray[1].points += 9;
+          sortArray[0].points += 1;
+
+          if(sortArray[1].obeliskTotal === sortArray[0].obeliskTotal){ 
+            sortArray[2].points += 6;
+            sortArray[1].points += 6;
+            sortArray[0].points += 6;
+          };
+        };
+
+        break;
+      case 2: 
+        
+      pointsToAward = 11; 
+       
+        if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal) {
+          sortArray[1].points += 10;
+          sortArray[0].points += 1;
+        }else{
+          sortArray[1].points = 5;
+          sortArray[0].points = 5;
+        }
+
+        break;
+      default: console.log('error with array length.');
+    };
+    
+
+
   }
 
   resetRound() {
