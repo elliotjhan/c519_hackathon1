@@ -102,7 +102,6 @@ class GameState {
   }
 
   loadShip(){
-    debugger;
     console.log('inside loadship')
     if(this.shipFull[0]) {
 
@@ -125,7 +124,6 @@ class GameState {
  }
 
   getBlocks() {
-    // debugger;
     if (this.players[this.playerTurn].blockCount < 5) {
       this.players[this.playerTurn].blockCount += 3;
 
@@ -144,7 +142,6 @@ class GameState {
   }
 
   sailShip() {
-    debugger;
     event.stopPropagation();
     if(this.shipDocked){
       alert('Ship is already docked. Please pick another action.');
