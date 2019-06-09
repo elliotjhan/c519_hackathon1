@@ -23,7 +23,7 @@
             <div class="obelisk-board"> 
 
             </div>
-            <div class="box">
+            <div class="dialogueBox">
                 
             </div>
         </div>
@@ -68,7 +68,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="modal-container" id="start-modal">
@@ -85,20 +84,19 @@
                 <div>
                     <button class="instructions">Instructions</button>
                 </div>
-                
             </div>
         </div>
     </div>
 
     <div class="modal-container hidden" id='end-modal'>
         <div class="modal-bg">
+            <img id='modalImage' src="assets/images/imhotep.jpg" alt="">
             <div class="modal-body">
-                <div class="modal-text">Play again?</div>
-                <button class="modal-button" id="game-reset"></button>
+                <div class="modal-text endgame"></div>
+                <button class="modal-button" id="game-reset">Reset</button>
             </div>
         </div>
     </div>
-
 </body>
 
     <div class="player hidden" id="template">
@@ -107,7 +105,6 @@
         <div class="sled">
         </div>
     </div>
-
     <div class="stack prime0 hidden" id="obbTemp"></div>
 
 </html>

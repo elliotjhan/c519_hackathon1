@@ -29,7 +29,6 @@ class GameState {
         'background-color': colorArray[i],
       })
 
-
       .addClass(`player player${i}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
 
       playerElement.find('.playerText').text('Player ' + (i+1));
@@ -64,7 +63,6 @@ class GameState {
 
     $('#game-reset').on('click', this.resetState);
 
-
     for(var i = 0; i < this.players.length; i++){
       this.players[i].blockCount = 2 + i;
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
@@ -76,7 +74,7 @@ class GameState {
     
     this.numberOfPlayers = $(event.currentTarget).text();
     
-    $('#start-modal').css('display', 'none');
+    $('#start-modal').addClass('hidden');
 
     var colorArray = ['olive', 'darkorange', 'goldenrod', 'tan'];
     colorArray = colorArray.slice(0, (this.numberOfPlayers));
@@ -89,27 +87,30 @@ class GameState {
 
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
     }
+
+    $('.dialogueBox').addClass('hidden');
   }
 
   loadShip(){
 
     if(this.shipFull[0]) {
-      $('.box').text('Ship is already full, please choose another action.')
-      //alert('Ship is already full, please choose another action.');
-
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Ship is already full, please choose another action.')
       return;
 
     }else if (this.players[this.playerTurn].blockCount < 1) {
-      $('.box').text('No blocks available to load ship, please choose another action.')
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('No blocks available to load ship, please choose another action.');
       //alert('No blocks available to load ship, please choose another action.');
-
       return;
 
     }else{
       this.players[this.playerTurn].blockCount -= 1;
-      $('.box').text('Ship has been loaded!');
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Ship has been loaded!');
       $('.block-space').text('1/1');
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
+      $('.block-space').addClass('player' + this.playerTurn);
 
       this.shipFull.push(this.players[this.playerTurn].color);
       this.updateTurn();
@@ -127,10 +128,12 @@ class GameState {
 
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
       this.updateTurn();
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Blocks received!');
 
     }else{
-      $('.box').text('Sled is already full, please choose another action.');
-      //alert('Sled is already full, please choose another action.');
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Sled is already full, please choose another action.');
       return;
     }
   }
@@ -138,18 +141,19 @@ class GameState {
   sailShip() {
 
     if(this.shipDocked){
-      // alert('Ship is already docked. Please pick another action.');
-      $('.box').text('Ship is already docked. Please pick another action.');
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Ship is already docked. Please pick another action.');
       return;
 
     } else if (!this.shipFull[0]) {
-      $('.box').text('Ship is not loaded, please pick another action.');
-      //alert('Ship is not loaded, please pick another action.');
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Ship is not loaded, please pick another action.');
       return;
 
     }else{
-      $('.box').text('Ship has sailed! Blocks unloaded. Starting a new round.')
-      //alert('Ship has sailed! Blocks unloaded. Starting a new round.');
+      $('.dialogueBox').removeClass('hidden');
+      $('.dialogueBox').text('Ship has sailed! Blocks unloaded. Starting a new round.');
+      $('.block-space').removeClass().addClass('block-space');
 
       for(var j = 0; j < this.players.length; j++){
         if (this.players[j].color === this.shipFull[0]) { 
@@ -158,8 +162,6 @@ class GameState {
         this.players[j].domElements.obelisk.text(this.players[j].obeliskTotal);
       };
         
-      
-
       this.shipFull = [];
       this.shipDocked = true;
       this.updateTurn();
@@ -177,7 +179,6 @@ class GameState {
 
       sortArray.push(this.players[i]);
     };
-
 
     var k = 0;
     while (k < sortArray.length) {
@@ -304,9 +305,6 @@ class GameState {
         break;
       default: console.log('error with array length.');
     };
-    
-
-
   }
 
   resetRound() {
@@ -316,9 +314,10 @@ class GameState {
     this.shipDocked = false;
 
     if(this.round > 6) {
-
       this.allocatePoints();
       this.round = 1;
+      $('#end-modal').removeClass('hidden');
+      $('.endgame').text('Play Again?')
     }
     $('.round-tracker').text(this.round);
   }
@@ -354,7 +353,8 @@ class GameState {
     $('.round-tracker').text(this.round);
     $('.prime0').text('0');
     $('.block-space').text('0/1');
-
+    $('#end-modal').addClass('hidden');
+    $('.dialogueBox').addClass('hidden');
 
     for(var i = 0; i < this.players.length; i++){
       this.players[i].score = null;
