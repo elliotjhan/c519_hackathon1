@@ -29,7 +29,7 @@ class GameState {
       })
 
 
-      .addClass(`player player${i+1}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
+      .addClass(`player player${i}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
 
       playerElement.find('.playerText').text('Player ' + (i+1));
 
@@ -40,7 +40,7 @@ class GameState {
 
       
       var obeliskElement = $('#obbTemp').clone();
-      obeliskElement.addClass(`stack${i + 1}`).addClass('prime0').removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
+      obeliskElement.addClass(`stack${i + 1}`).addClass(`prime0 obelisk${i}`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
 
       $('.obelisk-board').append(obeliskElement);
 
@@ -72,60 +72,41 @@ class GameState {
   startGame(event){
     
     this.numberOfPlayers = $(event.currentTarget).text();
-
-    var numberOfPlayers = this.numberOfPlayers;
     
     $('#start-modal').css('display', 'none');
 
-    switch (numberOfPlayers){
-      case '2': this.colorArray = ['olive', 'darkorange'];
-        break;
-      case '3': this.colorArray = ['olive', 'darkorange', 'goldenrod'];
-        break;
-      case '4': this.colorArray = ['olive', 'darkorange', 'goldenrod', 'tan'];
-        break;
-    }
+    var colorArray = ['olive', 'darkorange', 'goldenrod', 'tan'];
+    colorArray = colorArray.slice(0, (this.numberOfPlayers));
 
-    this.createPlayer(this.colorArray);
-
+    this.createPlayer(colorArray);
     
     for(var i = 0; i < this.players.length; i++){
       
-
       this.players[i].blockCount = 2 + i;
 
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
-      console.log('player block count: ', this.players[i].blockCount + '/5');
-
-      
     }
   }
 
   loadShip(){
-    debugger;
-    console.log('inside loadship')
+
     if(this.shipFull[0]) {
 
       alert('Ship is already full, please choose another action.');
 
-    } else {
+    }else{
+
       this.players[this.playerTurn].blockCount -= 1;
       $('.block-space').text('1/1');
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
 
-      console.log('after')
-      console.log(`#sled${this.playerTurn + 1}`)
-      console.log(`${this.players[this.playerTurn].blockCount}/5`)
-
-      this.shipFull.push(this.colorArray[this.playerTurn]);
+      this.shipFull.push(this.players[this.playerTurn].color);
       this.updateTurn();
-    
-   
     }
  }
 
   getBlocks() {
-    // debugger;
+
     if (this.players[this.playerTurn].blockCount < 5) {
       this.players[this.playerTurn].blockCount += 3;
 
@@ -136,7 +117,7 @@ class GameState {
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
       this.updateTurn();
 
-    } else {
+    }else{
 
       alert('Sled is already full, please choose another action.');
       return;
@@ -144,42 +125,51 @@ class GameState {
   }
 
   sailShip() {
-    debugger;
-    event.stopPropagation();
+
     if(this.shipDocked){
       alert('Ship is already docked. Please pick another action.');
       return;
 
-    } else if (!this.shipFull) {
+    } else if (!this.shipFull[0]) {
       alert('Ship is not loaded, please pick another action.');
 
       return;
-    } else {
+    }else{
       alert('Ship has sailed! Blocks unloaded. Starting a new round.');
 
-      this.updateTurn();
-      this.players[this.playerTurn].obeliskTotal += 1;
-      this.shipFull = false;
+      for(var j = 0; j < this.players.length; j++){
+        if (this.players[j].color === this.shipFull[0]) { 
+          this.players[j].obeliskTotal++;
+        };
+        this.players[j].domElements.obelisk.text(this.players[j].obeliskTotal);
+      };
+        
+      
+
+      this.shipFull = [];
       this.shipDocked = true;
+      this.updateTurn();
       this.resetRound();
       $('.block-space').text('0/1');
     }    
-
-    $('.stack-one').text(this.players[0].obeliskTotal);
-    $('.stack-two').text(this.players[1].obeliskTotal);
-
   }
 
-  allocatePoints(){
-    var p1Total = this.players[0].obeliskTotal;
-    var p2Total = this.players[1].obeliskTotal;
+  allocatePoints(){// this will all need to be redone once we fix obelisk block tracking
+    
+    for(var i = 0; i > this.players.length; i++){
+
+    }
+
     if(p1Total > p2Total) {
       this.players[0].score += 10;
       this.players[1].score += 1;
-    } else if (p1Total < p2Total){
+
+    }else if(p1Total < p2Total){
+
       this.players[1].score += 10;
       this.players[0].score += 1;
-    } else {
+    }else{
+
       this.players[1].score += 5;
       this.players[0].score += 5;
     }
@@ -193,22 +183,26 @@ class GameState {
     $('.stack-two').text('0');
     this.round++;
     this.shipDocked = false;
+
     if(this.round > 6) {
+
       this.allocatePoints();
       this.round = 1;
-      
     }
     $('.round-tracker').text(this.round);
   }
 
   updateTurn() {
+
     this.unmarkCurrentPlayer();
     this.playerTurn++;
+
     if (this.playerTurn === this.players.length) {
+
       this.playerTurn = 0;
     };
+
     this.markCurrentPlayer();
-    //add in dom elements
   }
 
   markCurrentPlayer(){
@@ -220,6 +214,7 @@ class GameState {
   } 
 
   resetState() {
+
     this.shipDocked = false;
     this.shipFull = [];
     this.playerTurn = 0;
@@ -228,18 +223,12 @@ class GameState {
     $('.round-tracker').text(this.round);
     $('.prime0').text('0');
     $('.block-space').text('0/1');
-    // $('.stack-one').text('0');
-    // $('.stack-two').text('0');
+
 
     for(var i = 0; i < this.players.length; i++){
       this.players[i].score = null;
       this.players[i].obeliskTotal = 0;
       this.players[i].blockCount = null;
     };
-  }
-
-  displayBlocks(){ 
-    $('.sled-one').text(this.players[0].blockCount + '/5');
-    $('.sled-two').text(this.players[1].blockCount + '/5');
   }
 }
