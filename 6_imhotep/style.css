@@ -117,53 +117,32 @@
     height: 100%;
 }
 .action-container button{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    opacity: 20%;
+
     padding: 15px 25px;
-    font-size: 24px;
     text-align: center;
-    cursor: pointer;
-    outline: none;
     color: #fff;
-    background-color: #4CAF50;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px #999;
+    box-shadow: 0 2px #999;
 }
 .action-container button:hover{
-    background-color: black;
-}
-.action-bar button:active {
+    background-color: #999;
     opacity: 20%; 
-    box-shadow: 0 5px #666;
-    transform: translateY(-.5px);
-    transform: translateX(-.5px);
 }
+/* .action-bar button:active {
+    /* opacity: 20%; 
+    box-shadow: 0 5px #666; 
+}*/
 
-.action-bar button:active#sail {
-    background-color: #76b9a2; 
-}
 
-.action-bar button:active#load {
-    background-color: #f59c06; 
-
-}
-
-.action-bar button:active#get-block {
-    background-color: orange; 
-}
 
 .action-bar button{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     font-size: 2.4rem;
-    background-color: #ffd56f;
+    /* background-color: #ffd56f; */
     opacity: 0.8;
     border-radius: 3px;
     margin-top: 1%;
@@ -175,8 +154,38 @@
     font-weight: bold;
     border-color: #73562e;
     font-family: Arial, Helvetica, sans-serif;
-    /* color: #713d52; */
-    color: #73562e;
+    /* color: #73562e; */
+
+}
+.action-bar button#sail{
+    background-color: #3d6878;
+    color: white;
+    border: solid .5px;
+}
+.action-bar button#load{
+    background-color: #904702;
+    /* color: #fff0d6; */
+    color: white;
+    border: solid .5px;
+}
+.action-bar button#get-block{
+    background-color: black;
+    color: white;
+    border: solid .5px;
+}
+.action-bar button:active#sail {
+    background-color: #5ca0b8; 
+    color:#ffd66c;
+}
+
+.action-bar button:active#load {
+    background-color: #904702; 
+    color:#ffd66c;
+}
+
+.action-bar button:active#get-block {
+    background-color: rgb(43, 43, 43); 
+    color:#ffd66c;
 }
 .stats {
     display: flex;
@@ -186,7 +195,8 @@
     height: 30%;
     /* border: 1px solid black; */
     /* background-color: #73562e; */
-    background-color: tan;
+    /* background-color: tan; */
+    background-color: #fff0d6;
 }
 
 .player {
@@ -210,6 +220,7 @@
     color: rgb(73, 28, 110);
     font-family: 'import';
 }
+
 .player0{
     background-color:olive;
 }
@@ -262,7 +273,7 @@
     height: 90%;
     width: 15%;
     top: 5%;
-    background-color: lightpink;
+    /* background-color: lightpink; */
     border: 1px solid black;
     text-shadow:
 		-1px -1px 0 rgba(255, 255, 255, 0.582),
@@ -292,7 +303,7 @@
     height: 90%;
     width: 15%;
     top: 5%;
-    background-color: skyblue;
+    /* background-color: skyblue; */
     border: 1px solid black;
     text-shadow:
     -1px -1px 0 rgba(255, 255, 255, 0.582),
@@ -307,7 +318,7 @@
 .round-tracker {
     height: 30%;
     width: 60%;
-    background-color: darkorange;
+    /* background-color: darkorange; */
     text-align: center;
     margin: 0 auto;
     padding-top: 1vh;
@@ -363,9 +374,36 @@
 
 }
 .currentTurn {
-    border: red 5px solid;
-}
+    /* border: red 5px solid; */
+    border:  rgb(73, 28, 110) 10px solid;
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s; 
 
+  /* When the animation is finished, start again */
+    animation-iteration-count: infinite; 
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
 .hidden{
     display: none; 
+}
+.instructions{
+    font-size: 1rem;
+    font-family: 'import';
+    border-radius: 10%;
+    border: 1px black;
+    background-color: #e6b4bd;
+    width: 12vw;
+    margin-top: 1vh;
 }
