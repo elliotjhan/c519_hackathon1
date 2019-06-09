@@ -94,20 +94,20 @@ class GameState {
   loadShip(){
 
     if(this.shipFull[0]) {
-
-      alert('Ship is already full, please choose another action.');
+      $('.box').text('Ship is already full, please choose another action.')
+      //alert('Ship is already full, please choose another action.');
 
       return;
 
     }else if (this.players[this.playerTurn].blockCount < 1) {
-
-      alert('No blocks available to load ship, please choose another action.');
+      $('.box').text('No blocks available to load ship, please choose another action.')
+      //alert('No blocks available to load ship, please choose another action.');
 
       return;
 
     }else{
-
       this.players[this.playerTurn].blockCount -= 1;
+      $('.box').text('Ship has been loaded!');
       $('.block-space').text('1/1');
       $(`#sled${this.playerTurn + 1}`).text(`${this.players[this.playerTurn].blockCount}/5`);
 
@@ -129,8 +129,8 @@ class GameState {
       this.updateTurn();
 
     }else{
-
-      alert('Sled is already full, please choose another action.');
+      $('.box').text('Sled is already full, please choose another action.');
+      //alert('Sled is already full, please choose another action.');
       return;
     }
   }
@@ -138,16 +138,18 @@ class GameState {
   sailShip() {
 
     if(this.shipDocked){
-      alert('Ship is already docked. Please pick another action.');
+      // alert('Ship is already docked. Please pick another action.');
+      $('.box').text('Ship is already docked. Please pick another action.');
       return;
 
     } else if (!this.shipFull[0]) {
-      alert('Ship is not loaded, please pick another action.');
-
+      $('.box').text('Ship is not loaded, please pick another action.');
+      //alert('Ship is not loaded, please pick another action.');
       return;
 
     }else{
-      alert('Ship has sailed! Blocks unloaded. Starting a new round.');
+      $('.box').text('Ship has sailed! Blocks unloaded. Starting a new round.')
+      //alert('Ship has sailed! Blocks unloaded. Starting a new round.');
 
       for(var j = 0; j < this.players.length; j++){
         if (this.players[j].color === this.shipFull[0]) { 

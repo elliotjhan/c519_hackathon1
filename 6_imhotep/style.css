@@ -97,7 +97,18 @@
 		-1px 1px 0 rgb(255, 255, 255, 0.582),
         1px 1px 0 rgb(255, 255, 255, 0.582);
 }
-
+.box {
+    border: 1px black solid;
+    background-color: white;
+    height: 20vh;
+    width: 30vw;
+    position: absolute;
+    bottom: 1vh;
+    font-size: 3rem;
+    font-family: 'import';
+    text-align: center;
+    left: 35vw;
+}
 .action-bar {
     height: 10%;
     background-color: #713d52;
