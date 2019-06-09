@@ -186,6 +186,34 @@
     color: rgb(73, 28, 110);
     font-family: 'import';
 }
+.player0{
+    background-color:olive;
+}
+.player1{
+    background-color:darkorange;
+}
+.player2{
+    background-color:goldenrod;
+}
+.player3{
+    background-color:tan;
+}
+.obelisk0{
+    color: olive;
+    
+}
+.obelisk1{
+    color: darkorange;
+    
+}
+.obelisk2{
+    color: goldenrod;
+   
+}
+.obelisk3{
+    color: tan;
+    
+}
 .sled {
     width: 100%;
     height: 90%;
