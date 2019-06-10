@@ -35,7 +35,7 @@ class GameState {
       playerElement.find('.playerText').text('Player ' + (i+1));
 
       // //addition
-      // playerElement.addClass(colarArray[i]+'-block');
+      // playerElement.addClass(colrArray[i]+'-block');
 
       $('.stats').append(playerElement);
 
@@ -45,6 +45,12 @@ class GameState {
 
       $('.obelisk-board').append(obeliskElement);
 
+      var scoreBoxElement = $('#scoreTemp').clone();
+      scoreBoxElement.addClass(`player${i}`).removeAttr('id', 'scoreTemp').removeClass('hidden');
+
+      $('.score-sub').append(scoreBoxElement);
+
+      this.players[i].domElements.scoreBox = scoreBoxElement;
       this.players[i].domElements.player = playerElement;//storing player dom element inside the player object for recall later
       this.players[i].domElements.obelisk = obeliskElement;//storing obelisk dom element inside the player object for recall later
 
@@ -166,7 +172,7 @@ class GameState {
     }    
   }
 
-  allocatePoints(){// this will all need to be redone once we fix obelisk block tracking
+  allocatePoints(){
     
     var winner;
     var sortArray = [];
@@ -175,7 +181,6 @@ class GameState {
 
       sortArray.push(this.players[i]);
     };
-
 
     var k = 0;
     while (k < sortArray.length) {
@@ -303,7 +308,10 @@ class GameState {
       default: console.log('error with array length.');
     };
     
-
+    for(var i = 0; i < this.players.length; i++){
+      
+      this.players.domElements.scoreBox.text(this.players.score);
+    }
 
   }
 
