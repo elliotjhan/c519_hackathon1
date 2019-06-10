@@ -288,7 +288,7 @@
 		1px -1px 0 rgb(255, 255, 255, 0.582),
 		-1px 1px 0 rgb(255, 255, 255, 0.582),
         1px 1px 0 rgb(255, 255, 255, 0.582);
-    color: rgb(73, 28, 110);
+    /* color: rgb(73, 28, 110); */
     font-size: 2.5rem;
     text-align: center;
     font-family: 'import';
@@ -297,15 +297,15 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 30%;
-    width: 30%;
+    /* height: 30%; */
+    width: 45%;
     margin: 0 auto;
+    margin-top: 2px;
 }
-.score-one {
-    background-color: yellow;
-}
-.score-two {
-    background-color: maroon;
+.score-sub{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .turn-track-container {
     height: 90%;
