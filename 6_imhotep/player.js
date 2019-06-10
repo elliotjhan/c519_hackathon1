@@ -8,7 +8,8 @@ class Player{
 
     this.domElements = {
       player: null,
-      obelisk: null
+      obelisk: null,
+      scoreBox: null
     };
   }
   markTurn(){
