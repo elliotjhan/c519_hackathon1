@@ -178,6 +178,7 @@ class GameState {
 
   allocatePoints(){
     
+    console.log('allocate points called');
     var winner;
     var sortArray = [];
 
@@ -206,7 +207,7 @@ class GameState {
 
         if(sortArray[3].obeliskTotal > sortArray[2].obeliskTotal) {
           sortArray[3].points += 15;
-          winner = 'Player 1';
+          winner = `${sortArray[3].color} wins!`;
           
           if(sortArray[2].obeliskTotal > sortArray[1].obeliskTotal) {
             sortArray[2].points += 10;
@@ -251,7 +252,7 @@ class GameState {
           } else if (sortArray[2].obeliskTotal > sortArray[1].obeliskTotal){
             sortArray[3].points += 12;
             sortArray[2].points += 12;
-            winner = 'Player 1 and 2 Tie for First!'
+            winner = `${sortArray[3].color} and ${sortArray[2].color} Tie for First!`
 
             if (sortArray[1].obeliskTotal === sortArray[0].obeliskTotal) {
               sortArray[1].points += 3;
@@ -270,7 +271,8 @@ class GameState {
 
         if(sortArray[2].obeliskTotal > sortArray[1].obeliskTotal) {
           sortArray[2].points += 12;
-          pointsToAward -= 12;
+          winner = `${sortArray[2].color}`;
+          
           
           if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal){
             sortArray[1].points += 7;
@@ -283,54 +285,66 @@ class GameState {
             break;
           };
 
-        }else if(sortArray[2].obeliskTotal === sortArray[1].obeliskTotal){
+        } else if (sortArray[2].obeliskTotal === sortArray[1].obeliskTotal && sortArray[1].obeliskTotal > sortArray[0].obeliskTotal){
           sortArray[2].points += 9;
           sortArray[1].points += 9;
           sortArray[0].points += 1;
 
-          if(sortArray[1].obeliskTotal === sortArray[0].obeliskTotal){ 
+          winner = `${sortArray[3].color} ties with ${sortArray[3].color}!`;
+
+        }else if(sortArray[1].obeliskTotal === sortArray[0].obeliskTotal){ 
             sortArray[2].points += 6;
             sortArray[1].points += 6;
             sortArray[0].points += 6;
-          };
-        };
 
+          winner = `A three-way tie!`;
+        };
+    
+      
         break;
       case 2: 
-        
-      pointsToAward = 11; 
        
         if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal) {
           sortArray[1].points += 10;
           sortArray[0].points += 1;
+
+          winner = `${sortArray[1]} wins!`
         }else{
           sortArray[1].points = 5;
           sortArray[0].points = 5;
+
+          winner = `${sortArray[1]} and ${sortArray[1]} tie!`
         }
 
         break;
       default: console.log('error with array length.');
     };
-
+  
     for(var i = 0; i < this.players.length; i++){
       
-      this.players.domElements.scoreBox.text(this.players.score);
+      this.players[i].domElements.scoreBox.text(this.players[i].points);
     }
 
+    return winner;
   }
 
   resetRound() {
-    $('.stack-one').text('0');
-    $('.stack-two').text('0');
+
     this.round++;
     this.shipDocked = false;
+    this.shipFull = [];
+
 
     if(this.round > 6) {
+
       this.allocatePoints();
       this.round = 1;
-      $('#end-modal').removeClass('hidden');
+
+      setTimeout(function () { $('#end-modal').removeClass('hidden') }, 4500);
+      
       $('.endgame').text('Play Again?')
-    }
+    };
+
     $('.round-tracker').text(this.round);
   }
 
@@ -371,7 +385,10 @@ class GameState {
     for(var i = 0; i < this.players.length; i++){
       this.players[i].score = null;
       this.players[i].obeliskTotal = 0;
-      this.players[i].blockCount = null;
+      this.players[i].blockCount = 2 + i;
+
+      
+      $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
     };
   }
 
