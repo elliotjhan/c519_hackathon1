@@ -418,6 +418,27 @@
     border-radius: 10%;
     border: 1px black;
     background-color: #e6b4bd;
-    width: 12vw;
+    width: 15vh;
     margin-top: 1vh;
+    position: relative;
+}
+
+.game-details{
+    position: absolute;
+    left: 65%;
+    top: 25%;
+    font-size: 1rem;
+    font-family: 'import';
+    border-radius: 3%;
+    border: 1px black;
+    background-color: rgba(254, 170, 75, 0.5);
+    width: 50vh;
+    margin-top: 1vh;
+    text-align: center;
+    color: black;
+    padding: 1.5%;
+}
+
+.game-details p {
+    font-family: Arial, Helvetica, sans-serif;
 }
