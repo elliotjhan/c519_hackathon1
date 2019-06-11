@@ -32,9 +32,6 @@ class GameState {
 
       playerElement.find('.playerText').text('Player ' + (i+1));
 
-      // //addition
-      // playerElement.addClass(colrArray[i]+'-block');
-
       $('.stats').append(playerElement);
 
       var obeliskElement = $('#obbTemp').clone();
@@ -64,15 +61,9 @@ class GameState {
 
     $('#reset-players').on('click', function(){
 
-      console.log('Reset Players function called, startgame modal should show.');
       $('#start-modal').removeClass('hidden');
       $('#end-modal').addClass('hidden');
-      
-
-      // for(var i = 0; i < this.players.length; i++){
-      //   this.players[i].domElements.remove();
-      // };
-
+   
       $('.remove').remove();
 
     });
@@ -191,8 +182,7 @@ class GameState {
   }
 
   allocatePoints(){
-    
-    console.log('allocate points called');
+
     var winner;
     var sortArray = [];
 
@@ -315,9 +305,8 @@ class GameState {
 
           winner = `A three-way tie!`;
         };
-    
-      
-        break;
+          break;
+
       case 2: 
        
         if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal) {
@@ -350,7 +339,6 @@ class GameState {
     this.shipDocked = false;
     this.shipFull = [];
 
-
     if(this.round > 6) {
 
       var winnerMessage = this.allocatePoints();
@@ -359,8 +347,6 @@ class GameState {
       setTimeout(function () { $('#end-modal').removeClass('hidden')
         $('.endgame').text(winnerMessage + ' Play Again?'); }, 3000);
       
-      
-
     };
 
     $('.round-tracker').text(this.round);
@@ -404,7 +390,6 @@ class GameState {
       this.players[i].score = null;
       this.players[i].obeliskTotal = 0;
       this.players[i].blockCount = 2 + i;
-
       
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
     };
