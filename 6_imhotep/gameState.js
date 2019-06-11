@@ -7,15 +7,14 @@ class GameState {
     this.resetState = this.resetState.bind(this);
     this.startGame = this.startGame.bind(this);
     this.instructions = this.instructions.bind(this);
+    this.assignButtonHandlers = this.assignButtonHandlers.bind(this);
    
     this.shipDocked = false;
     this.shipFull = [];
     this.playerTurn = 0;
     this.players = [];
     this.round = 1; 
-    //we should be able to get rid of numberOfPlayers and colorArray
-    this.numberOfPlayers = null;
-    this.colorArray = [];
+    
   }
  
   createPlayer(colorArray){
@@ -29,7 +28,7 @@ class GameState {
         'background-color': colorArray[i],
       })
 
-      .addClass(`player player${i}`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
+      .addClass(`player player${i} remove`).removeClass('hidden').removeAttr('id', 'template').find('.sled').attr('id', `sled${i + 1}`);
 
       playerElement.find('.playerText').text('Player ' + (i+1));
 
@@ -40,12 +39,12 @@ class GameState {
 
       
       var obeliskElement = $('#obbTemp').clone();
-      obeliskElement.addClass(`stack${i + 1}`).addClass(`prime0 obelisk${i}`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
+      obeliskElement.addClass(`stack${i + 1}`).addClass(`prime0 obelisk${i} remove`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
 
       $('.obelisk-board').append(obeliskElement);
 
       var scoreBoxElement = $('#scoreTemp').clone();
-      scoreBoxElement.addClass(`player${i}`).removeAttr('id', 'scoreTemp').removeClass('hidden');
+      scoreBoxElement.addClass(`player${i} remove`).removeAttr('id', 'scoreTemp').removeClass('hidden');
 
       $('.score-sub').append(scoreBoxElement);
 
@@ -61,9 +60,24 @@ class GameState {
     $('#sail').on('click', this.sailShip);
     $('#load').on('click', this.loadShip);
     $('#get-block').on('click', this.getBlocks);
-    $('#start-game-button2').on('click', game.startGame);
-    $('#start-game-button3').on('click', game.startGame);
-    $('#start-game-button4').on('click', game.startGame);
+    $('#start-game-button2').on('click', this.startGame);
+    $('#start-game-button3').on('click', this.startGame);
+    $('#start-game-button4').on('click', this.startGame);
+
+    $('#reset-players').on('click', function(){
+
+      console.log('Reset Players function called, startgame modal should show.');
+      $('#start-modal').removeClass('hidden');
+      $('#end-modal').addClass('hidden');
+      
+
+      // for(var i = 0; i < this.players.length; i++){
+      //   this.players[i].domElements.remove();
+      // };
+
+      $('.remove').remove();
+
+    });
 
     $('.instructions').on('click', this.instructions);
 
@@ -78,12 +92,10 @@ class GameState {
 
   startGame(event){
     
-    this.numberOfPlayers = $(event.currentTarget).text();
-    
     $('#start-modal').addClass('hidden');
 
     var colorArray = ['olive', 'darkorange', 'goldenrod', 'tan'];
-    colorArray = colorArray.slice(0, (this.numberOfPlayers));
+    colorArray = colorArray.slice(0, ($(event.currentTarget).text()));
 
     this.createPlayer(colorArray);
     
@@ -247,12 +259,14 @@ class GameState {
               sortArray[2].points  += 8;
               sortArray[1].points  += 8;
               sortArray[0].points  += 1;
+
+              winner = `${sortArray[3].color}, ${sortArray[2].color}, and ${sortArray[1].color} tie for the win!`
             };
 
           } else if (sortArray[2].obeliskTotal > sortArray[1].obeliskTotal){
             sortArray[3].points += 12;
             sortArray[2].points += 12;
-            winner = `${sortArray[3].color} and ${sortArray[2].color} Tie for First!`
+            winner = `${sortArray[3].color} and ${sortArray[2].color} tie for First!`
 
             if (sortArray[1].obeliskTotal === sortArray[0].obeliskTotal) {
               sortArray[1].points += 3;
@@ -271,7 +285,7 @@ class GameState {
 
         if(sortArray[2].obeliskTotal > sortArray[1].obeliskTotal) {
           sortArray[2].points += 12;
-          winner = `${sortArray[2].color}`;
+          winner = `${sortArray[2].color} wins!`;
           
           
           if(sortArray[1].obeliskTotal > sortArray[0].obeliskTotal){
@@ -308,12 +322,12 @@ class GameState {
           sortArray[1].points += 10;
           sortArray[0].points += 1;
 
-          winner = `${sortArray[1]} wins!`
+          winner = `${sortArray[1].color} wins!`
         }else{
           sortArray[1].points = 5;
           sortArray[0].points = 5;
 
-          winner = `${sortArray[1]} and ${sortArray[1]} tie!`
+          winner = `${sortArray[1].color} and ${sortArray[1].color} tie!`
         }
 
         break;
@@ -337,12 +351,14 @@ class GameState {
 
     if(this.round > 6) {
 
-      this.allocatePoints();
+      var winnerMessage = this.allocatePoints();
       this.round = 1;
 
-      setTimeout(function () { $('#end-modal').removeClass('hidden') }, 4500);
+      setTimeout(function () { $('#end-modal').removeClass('hidden')
+        $('.endgame').text(winnerMessage + ' Play Again?'); }, 3000);
       
-      $('.endgame').text('Play Again?')
+      
+
     };
 
     $('.round-tracker').text(this.round);

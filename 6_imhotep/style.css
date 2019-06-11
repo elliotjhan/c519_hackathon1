@@ -363,11 +363,11 @@
     }
 
 .modal-button{  
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'import';
     border-radius: 10%;
     background-color: #e6b4bd;
-    width: 6vw;
+    width: 10vw;
 }
 
 .modal-text{
@@ -407,6 +407,9 @@
     display: none; 
 }
 #game-reset {
+    font-size: 2rem;
+}
+#reset-players{
     font-size: 2rem;
 }
 .instructions{
