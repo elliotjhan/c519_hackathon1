@@ -20,7 +20,7 @@
 }
 .ocean img {
     top: 10%;
-    left: 40%;
+    left: 20%;
     height: 15%;
     position: absolute;
 }
@@ -31,7 +31,7 @@
 .ship {
     font-size: 1rem;
     text-align: center;
-    top: 40%;
+    top: 50%;
     left: 5%;
     height: 30%;
     width: 30%;
@@ -104,7 +104,6 @@
     font-size: 3rem;
     font-family: 'import';
     text-align: center;
-    vertical-align: middle;
     left: 35vw;
 }
 .action-bar {
@@ -369,7 +368,25 @@
     background-color: #e6b4bd;
     width: 10vw;
 }
-
+.game-instructions {
+    border: 1px black solid;
+    background-color: rgba(253, 197, 123, 0.527);
+    text-shadow:
+		-1px -1px 0 rgba(255, 255, 255, 0.582),
+		1px -1px 0 rgb(255, 255, 255, 0.582),
+		-1px 1px 0 rgb(255, 255, 255, 0.582),
+        1px 1px 0 rgb(255, 255, 255, 0.582);
+    border-radius: 5px;
+    height: 84vh;
+    padding: 3px;
+    width: 30vw;
+    position: absolute;
+    bottom: 1vh;
+    margin-left: 30vw;
+    font-size: 1.9rem;
+    font-family: 'import';
+    text-align: center;
+}
 .modal-text{
     font-family: 'import';
     font-size: 5rem;
