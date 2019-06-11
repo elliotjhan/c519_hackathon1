@@ -38,7 +38,6 @@ class GameState {
 
       $('.stats').append(playerElement);
 
-      
       var obeliskElement = $('#obbTemp').clone();
       obeliskElement.addClass(`stack${i + 1}`).addClass(`prime0 obelisk${i}`).removeAttr('id', 'obbTemp').removeClass('hidden').text('0');
 
@@ -52,7 +51,6 @@ class GameState {
       this.players[i].domElements.scoreBox = scoreBoxElement;
       this.players[i].domElements.player = playerElement;//storing player dom element inside the player object for recall later
       this.players[i].domElements.obelisk = obeliskElement;//storing obelisk dom element inside the player object for recall later
-
     }
     this.markCurrentPlayer();
   }
@@ -67,13 +65,18 @@ class GameState {
 
     $('.instructions').on('click', this.instructions);
 
-    $('#game-reset').on('click', this.resetState);
+    $('#game-reset').on('click', function() {
+      $('.player').remove();
+      $('.stack').remove();
+      $('#start-modal').removeClass('hidden');
+      $('#end-modal').addClass('hidden');
+      this.resetState;
+    });
 
     for(var i = 0; i < this.players.length; i++){
       this.players[i].blockCount = 2 + i;
       $(`#sled${i + 1}`).text(this.players[i].blockCount + '/5');
     };
-
   }
 
   startGame(event){
@@ -107,7 +110,6 @@ class GameState {
     }else if (this.players[this.playerTurn].blockCount < 1) {
       $('.dialogueBox').removeClass('hidden');
       $('.dialogueBox').text('No blocks available to load ship, please choose another action.');
-      //alert('No blocks available to load ship, please choose another action.');
       return;
 
     }else{
@@ -313,7 +315,6 @@ class GameState {
     };
 
     for(var i = 0; i < this.players.length; i++){
-      
       this.players.domElements.scoreBox.text(this.players.score);
     }
 
