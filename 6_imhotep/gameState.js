@@ -64,14 +64,10 @@ class GameState {
 
     $('#reset-players').on('click', function(){
 
-      console.log('Reset Players function called, startgame modal should show.');
+      
       $('#start-modal').removeClass('hidden');
       $('#end-modal').addClass('hidden');
       
-
-      // for(var i = 0; i < this.players.length; i++){
-      //   this.players[i].domElements.remove();
-      // };
 
       $('.remove').remove();
 
@@ -352,12 +348,16 @@ class GameState {
 
 
     if(this.round > 6) {
-
+      this.round = 6;
       var winnerMessage = this.allocatePoints();
-      this.round = 1;
+      
 
-      setTimeout(function () { $('#end-modal').removeClass('hidden')
-        $('.endgame').text(winnerMessage + ' Play Again?'); }, 3000);
+      setTimeout(function () { 
+        $('#end-modal').removeClass('hidden')
+        $('.endgame').text(winnerMessage + ' Play Again?');
+        this.round = 1;
+      }, 1500);
+        
       
       
 
@@ -411,6 +411,6 @@ class GameState {
   }
 
   instructions() {
-     $('.game-instructions').toggleClass('hidden'); 
+    $('.game-details').toggleClass('hidden');
   }
 }
